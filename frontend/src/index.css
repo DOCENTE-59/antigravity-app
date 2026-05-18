@@ -1,15 +1,21 @@
 :root {
-  --primary: #10b981; /* Verde Esmeralda (Marca) */
+  --primary: #10b981;
+  /* Verde Esmeralda (Marca) */
   --primary-hover: #059669;
-  --secondary: #064e3b; /* Verde muy oscuro (Títulos) */
-  --bg-color: #f9fafb; /* Fondo gris muy claro para evitar fatiga visual */
-  --surface: #ffffff; /* Tarjetas blancas */
+  --secondary: #064e3b;
+  /* Verde muy oscuro (Títulos) */
+  --bg-color: #f9fafb;
+  /* Fondo gris muy claro para evitar fatiga visual */
+  --surface: #ffffff;
+  /* Tarjetas blancas */
   --text-main: #1f2937;
   --text-muted: #6b7280;
-  --danger: #ef4444; /* Alertas de error */
-  --warning: #f59e0b; /* Feedbacks pendientes */
+  --danger: #ef4444;
+  /* Alertas de error */
+  --warning: #f59e0b;
+  /* Feedbacks pendientes */
   --white: #ffffff;
-  
+
   /* Sistema espaciado mobile-first */
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -31,11 +37,13 @@ body {
 
 /* Contenedor principal estilo App Móvil */
 .app-container {
-  max-width: 480px; /* Ancho máximo de móvil grande */
+  max-width: 480px;
+  /* Ancho máximo de móvil grande */
   margin: 0 auto;
   min-height: 100vh;
   background-color: var(--bg-color);
-  box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Sombra suave lateral en pantallas grandes */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  /* Sombra suave lateral en pantallas grandes */
 }
 
 /* Regla UI Global: Botones táctiles mínimos de 44px */
@@ -48,11 +56,14 @@ button {
   transition: all 0.2s ease;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: inherit;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 12px;
-  font-size: 16px; /* Evita el zoom automático en iOS */
+  font-size: 16px;
+  /* Evita el zoom automático en iOS */
   width: 100%;
 }
