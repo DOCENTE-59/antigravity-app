@@ -1,0 +1,8 @@
+host: db.uptasgcesuwlcexwsufu.supabase.co
+port: 5432
+database: postgres
+user: postgres
+password: [la contraseña que guardaste al crear el proyecto]
+
+Connection string completa:
+postgresql://postgres:[Docentebelen-59]@db.uptasgcesuwlcexwsufu.supabase.co:5432/postgres
