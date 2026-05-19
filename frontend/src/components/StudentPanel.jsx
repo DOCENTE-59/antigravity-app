@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 function StudentPanel() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -22,7 +22,7 @@ function StudentPanel() {
   const fetchLogs = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/students/${id}/logs`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/students/${id}/logs`);
       if (!response.ok) {
         const errData = await response.json().catch(() => ({}));
         throw new Error(errData.error || 'Error al obtener el historial de prácticas.');
@@ -56,7 +56,7 @@ function StudentPanel() {
         hours_dedicated: Number(formData.hours_dedicated)
       };
 
-      const response = await fetch('http://localhost:5000/api/logs', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/logs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ function StudentPanel() {
       }
 
       setSuccessMsg('¡Registro guardado correctamente!');
-      
+
       // Resetear el formulario, manteniendo la fecha actual
       setFormData({
         log_date: new Date().toISOString().split('T')[0],
@@ -82,7 +82,7 @@ function StudentPanel() {
 
       // Refrescar el historial
       fetchLogs();
-      
+
       // Limpiar mensaje de éxito después de 3 segundos
       setTimeout(() => setSuccessMsg(''), 3000);
 
@@ -223,8 +223,8 @@ function StudentPanel() {
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
             <div style={{ ...styles.formGroup, flex: '1 1 200px' }}>
               <label style={styles.label}>Fecha</label>
-              <input 
-                type="date" 
+              <input
+                type="date"
                 name="log_date"
                 value={formData.log_date}
                 onChange={handleChange}
@@ -233,8 +233,8 @@ function StudentPanel() {
             </div>
             <div style={{ ...styles.formGroup, flex: '1 1 200px' }}>
               <label style={styles.label}>Horas Dedicadas</label>
-              <input 
-                type="number" 
+              <input
+                type="number"
                 name="hours_dedicated"
                 step="0.5"
                 min="0.5"
@@ -248,7 +248,7 @@ function StudentPanel() {
 
           <div style={styles.formGroup}>
             <label style={styles.label}>Descripción de Tareas</label>
-            <textarea 
+            <textarea
               name="task_description"
               value={formData.task_description}
               onChange={handleChange}
@@ -260,8 +260,8 @@ function StudentPanel() {
 
           <div style={styles.formGroup}>
             <label style={styles.label}>Competencias Trabajadas</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               name="competences_worked"
               value={formData.competences_worked}
               onChange={handleChange}
@@ -272,8 +272,8 @@ function StudentPanel() {
 
           <div style={styles.formGroup}>
             <label style={styles.label}>Incidencias (Opcional)</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               name="incidents"
               value={formData.incidents}
               onChange={handleChange}
@@ -297,9 +297,9 @@ function StudentPanel() {
           logs.map((log) => (
             <div key={log.log_id} style={styles.historyItem}>
               <div style={styles.dateHeader}>
-                {new Date(log.log_date).toLocaleDateString('es-ES', { 
-                  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-                })} 
+                {new Date(log.log_date).toLocaleDateString('es-ES', {
+                  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                })}
                 <span style={{ fontWeight: 'normal', color: 'var(--text-muted)', marginLeft: '8px' }}>
                   • {log.hours_dedicated} horas
                 </span>
@@ -309,7 +309,7 @@ function StudentPanel() {
               {log.incidents && (
                 <p style={styles.textDetail}><strong>Incidencias:</strong> {log.incidents}</p>
               )}
-              
+
               {log.feedback_text && (
                 <div style={styles.feedbackBox}>
                   <strong>👩‍🏫 Feedback del Tutor:</strong>
