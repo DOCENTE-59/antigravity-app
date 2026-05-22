@@ -7,7 +7,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Estilos limpios y directos para el componente Login
   const styles = {
     container: {
       padding: 'var(--spacing-lg)',
@@ -68,10 +67,9 @@ function Login() {
     }
   };
 
-  const handleLogin = (role) => {
+  const handleLogin = async (role) => {
     setError('');
-    
-    // Validación amigable (sin tecnicismos)
+
     if (!email || !password) {
       setError('Por favor, escribe tu correo y contraseña para entrar.');
       return;
@@ -79,21 +77,28 @@ function Login() {
 
     const cleanEmail = email.trim().toLowerCase();
 
-    // Lógica Mockeada para la PoC (conectando con los datos reales de la BDD)
-    if (role === 'student') {
-      if (cleanEmail === 'ana.martinez.fake@email.com') {
-        navigate('/student/a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d');
-      } else if (cleanEmail === 'carlos.lopez.fake@email.com') {
-        navigate('/student/b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e');
-      } else {
-        setError('No encontramos ningún alumno con ese correo. Revisa si está bien escrito.');
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cleanEmail, password, role })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Error al iniciar sesión.');
+        return;
       }
-    } else if (role === 'teacher') {
-      if (cleanEmail === 'docente@antigravity.com') {
+
+      if (role === 'student') {
+        navigate(`/student/${data.id}`);
+      } else if (role === 'teacher') {
         navigate('/teacher');
-      } else {
-        setError('Parece que tus credenciales de docente son incorrectas.');
       }
+
+    } catch (err) {
+      setError('No se pudo conectar con el servidor. Inténtalo de nuevo.');
     }
   };
 
@@ -106,8 +111,8 @@ function Login() {
 
       <div style={styles.formGroup}>
         <label style={styles.label}>Correo electrónico</label>
-        <input 
-          type="email" 
+        <input
+          type="email"
           placeholder="tu@correo.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -116,8 +121,8 @@ function Login() {
 
       <div style={styles.formGroup}>
         <label style={styles.label}>Contraseña</label>
-        <input 
-          type="password" 
+        <input
+          type="password"
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -125,14 +130,14 @@ function Login() {
       </div>
 
       <div style={{ marginTop: '32px' }}>
-        <button 
-          style={styles.buttonStudent} 
+        <button
+          style={styles.buttonStudent}
           onClick={() => handleLogin('student')}
         >
           Entrar como Alumno
         </button>
-        <button 
-          style={styles.buttonTeacher} 
+        <button
+          style={styles.buttonTeacher}
           onClick={() => handleLogin('teacher')}
         >
           Entrar como Docente
