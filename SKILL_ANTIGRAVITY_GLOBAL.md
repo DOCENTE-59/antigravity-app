@@ -131,11 +131,15 @@ antigravity-app/
 
 - [x] **Fase I** — Identificación del problema y validación con stakeholders ✅
 - [x] **Fase II** — Propuesta de valor y funcionalidades esenciales del MVP ✅
-- [ ] **Fase III** — Construcción de la PoC (en curso)
-  - [ ] Paso 1: Base de datos
-  - [ ] Paso 2: Backend (API)
-  - [ ] Paso 3: Frontend (interfaz)
-  - [ ] Paso 4: Pruebas y despliegue
+- [/] **Fase III** — Construcción de la PoC (en curso)
+  - [x] Paso 1: Base de datos (Supabase PostgreSQL) ✅
+  - [x] Paso 2: Backend (API REST en Railway) ✅
+  - [x] Paso 3: Frontend (interfaz React + Vite) ✅
+  - [/] Paso 4: Pruebas y despliegue (en curso)
+
+### 🔌 URLs del Proyecto
+- **Backend REST API:** [https://antigravity-app-production-a145.up.railway.app](https://antigravity-app-production-a145.up.railway.app)
+- **Base de Datos:** Supabase (`eu-central-1`)
 
 ---
 

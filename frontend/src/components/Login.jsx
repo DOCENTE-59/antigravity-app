@@ -103,46 +103,54 @@ function Login() {
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={{ ...styles.title, fontSize: '26px', letterSpacing: 'normal', marginBottom: '40px' }}>
-        SEGUIMIENTO PRÁCTICAS PROFESIONALES
-      </h1>
+    <div className="login-cover-container">
+      <div className="login-content">
+        <h1 className="login-title-main">
+          DIGITALIZACIÓN Y SEGUIMIENTO INTELIGENTE DE PRÁCTICAS PROFESIONALES
+        </h1>
 
-      {error && <div style={styles.errorBox}>{error}</div>}
+        <div className="login-card-modern">
+          <h2 className="login-card-title">Identificación de Usuario</h2>
 
-      <div style={styles.formGroup}>
-        <label style={styles.label}>Correo electrónico</label>
-        <input
-          type="email"
-          placeholder="tu@correo.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
+          {error && <div style={styles.errorBox}>{error}</div>}
 
-      <div style={styles.formGroup}>
-        <label style={styles.label}>Contraseña</label>
-        <input
-          type="password"
-          placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+          <div className="login-input-group">
+            <label className="login-input-label">Correo electrónico</label>
+            <input
+              type="email"
+              className="login-input-field"
+              placeholder="tu@correo.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-      <div style={{ marginTop: '32px' }}>
-        <button
-          style={styles.buttonStudent}
-          onClick={() => handleLogin('student')}
-        >
-          Entrar como Alumno
-        </button>
-        <button
-          style={styles.buttonTeacher}
-          onClick={() => handleLogin('teacher')}
-        >
-          Entrar como Docente
-        </button>
+          <div className="login-input-group">
+            <label className="login-input-label">Contraseña</label>
+            <input
+              type="password"
+              className="login-input-field"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div style={{ marginTop: '32px' }}>
+            <button
+              className="login-btn-student-modern"
+              onClick={() => handleLogin('student')}
+            >
+              Entrar como Alumno
+            </button>
+            <button
+              className="login-btn-teacher-modern"
+              onClick={() => handleLogin('teacher')}
+            >
+              Entrar como Docente
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
