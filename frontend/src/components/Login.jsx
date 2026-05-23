@@ -104,8 +104,9 @@ function Login() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Antigravity</h1>
-      <p style={styles.subtitle}>Seguimiento de Prácticas Profesionales</p>
+      <h1 style={{ ...styles.title, fontSize: '26px', letterSpacing: 'normal', marginBottom: '40px' }}>
+        SEGUIMIENTO PRÁCTICAS PROFESIONALES
+      </h1>
 
       {error && <div style={styles.errorBox}>{error}</div>}
 

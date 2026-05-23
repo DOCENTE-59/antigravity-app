@@ -15,7 +15,7 @@ pool.query('SELECT NOW()', (err, res) => {
         process.exit(1);
     } else {
         console.log('✅ Conexión exitosa al Session Pooler de Supabase.');
-        
+
         // Arrancamos el servidor
         app.listen(PORT, () => {
             console.log(`🚀 Servidor backend escuchando en http://localhost:${PORT}`);
